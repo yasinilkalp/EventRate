@@ -17,7 +17,9 @@ namespace EventRate.Events.Infrastructure
             services.AddDbContext<ApplicationContext>(options =>
             {
                 string sqlConStr = configuration.GetConnectionString("DefaultConnection");
-                options.UseNpgsql(sqlConStr, b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)); 
+                //options.UseNpgsql(sqlConStr, b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)); 
+
+                options.UseSqlServer(sqlConStr, b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName));
 
             }); 
 

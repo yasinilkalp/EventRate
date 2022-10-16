@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventRate.Core", "src\Servi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventRate.Events.Infrastructure", "src\Services\Events\EventRate.Events.Infrastructure\EventRate.Events.Infrastructure.csproj", "{070DC9DF-FA66-4D57-8E57-F671FADCCD25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventRate.Events", "src\Services\Events\EventRate.Events\EventRate.Events.csproj", "{52C22B34-1CC9-426E-8694-7500E756C607}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{070DC9DF-FA66-4D57-8E57-F671FADCCD25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{070DC9DF-FA66-4D57-8E57-F671FADCCD25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{070DC9DF-FA66-4D57-8E57-F671FADCCD25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52C22B34-1CC9-426E-8694-7500E756C607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52C22B34-1CC9-426E-8694-7500E756C607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52C22B34-1CC9-426E-8694-7500E756C607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52C22B34-1CC9-426E-8694-7500E756C607}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{68C8EAA3-2551-48C2-B0F3-B4BAB38F8588} = {23763D86-E29A-4854-A18F-1575E10C0A32}
 		{19B99542-7607-4B4C-91E3-5AB37ADC9CEC} = {68C8EAA3-2551-48C2-B0F3-B4BAB38F8588}
 		{070DC9DF-FA66-4D57-8E57-F671FADCCD25} = {7631D09B-18B5-4F2F-81F0-1D509D82CD39}
+		{52C22B34-1CC9-426E-8694-7500E756C607} = {7631D09B-18B5-4F2F-81F0-1D509D82CD39}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {308D7F76-907E-4A7B-99B6-295C4384E9D6}
