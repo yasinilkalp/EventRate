@@ -1,11 +1,12 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace EventRate.Events.Infrastructure.Migrations
 {
-    public partial class V_First : Migration
+    public partial class V_First_Postgres : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,18 +21,18 @@ namespace EventRate.Events.Infrastructure.Migrations
                 schema: "users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
-                    Phone = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    CreatedBy = table.Column<int>(type: "integer", nullable: true),
+                    UpdatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "integer", nullable: true),
+                    IsDelete = table.Column<bool>(type: "boolean", nullable: false),
+                    FirstName = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: true),
+                    LastName = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: true),
+                    Email = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: true),
+                    Phone = table.Column<string>(type: "character varying(16)", maxLength: 16, nullable: true),
+                    Password = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,21 +44,21 @@ namespace EventRate.Events.Infrastructure.Migrations
                 schema: "events",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
-                    SummaryText = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EventDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    AnswerEndDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    QrCode = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    CreatedBy = table.Column<int>(type: "integer", nullable: true),
+                    UpdatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "integer", nullable: true),
+                    IsDelete = table.Column<bool>(type: "boolean", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    Name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: true),
+                    SummaryText = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    EventDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    AnswerEndDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    Location = table.Column<string>(type: "text", nullable: true),
+                    QrCode = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -76,18 +77,18 @@ namespace EventRate.Events.Infrastructure.Migrations
                 schema: "events",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
-                    EventId = table.Column<int>(type: "int", nullable: false),
-                    Path = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Extension = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    Size = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Sort = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    CreatedBy = table.Column<int>(type: "integer", nullable: true),
+                    UpdatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "integer", nullable: true),
+                    IsDelete = table.Column<bool>(type: "boolean", nullable: false),
+                    EventId = table.Column<int>(type: "integer", nullable: false),
+                    Path = table.Column<string>(type: "text", nullable: true),
+                    Extension = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true),
+                    Size = table.Column<string>(type: "text", nullable: true),
+                    Sort = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -106,16 +107,16 @@ namespace EventRate.Events.Infrastructure.Migrations
                 schema: "events",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
-                    EventId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    CreatedBy = table.Column<int>(type: "integer", nullable: true),
+                    UpdatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "integer", nullable: true),
+                    IsDelete = table.Column<bool>(type: "boolean", nullable: false),
+                    EventId = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    Status = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -133,7 +134,7 @@ namespace EventRate.Events.Infrastructure.Migrations
                         principalSchema: "users",
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -141,17 +142,17 @@ namespace EventRate.Events.Infrastructure.Migrations
                 schema: "events",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
-                    EventId = table.Column<int>(type: "int", nullable: false),
-                    Question = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    QuestionType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Sort = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    CreatedBy = table.Column<int>(type: "integer", nullable: true),
+                    UpdatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "integer", nullable: true),
+                    IsDelete = table.Column<bool>(type: "boolean", nullable: false),
+                    EventId = table.Column<int>(type: "integer", nullable: false),
+                    Question = table.Column<string>(type: "text", nullable: true),
+                    QuestionType = table.Column<string>(type: "text", nullable: false),
+                    Sort = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -170,18 +171,18 @@ namespace EventRate.Events.Infrastructure.Migrations
                 schema: "events",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
-                    EventId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    QuestionId = table.Column<int>(type: "int", nullable: false),
-                    Rate = table.Column<int>(type: "int", nullable: true),
-                    Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    CreatedBy = table.Column<int>(type: "integer", nullable: true),
+                    UpdatedDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "integer", nullable: true),
+                    IsDelete = table.Column<bool>(type: "boolean", nullable: false),
+                    EventId = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    QuestionId = table.Column<int>(type: "integer", nullable: false),
+                    Rate = table.Column<int>(type: "integer", nullable: true),
+                    Comment = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -199,14 +200,14 @@ namespace EventRate.Events.Infrastructure.Migrations
                         principalSchema: "events",
                         principalTable: "Events",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EventAnswers_Users_UserId",
                         column: x => x.UserId,
                         principalSchema: "users",
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -252,16 +253,14 @@ namespace EventRate.Events.Infrastructure.Migrations
                 schema: "events",
                 table: "EventQuestions",
                 columns: new[] { "EventId", "Question" },
-                unique: true,
-                filter: "[Question] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_Name",
                 schema: "events",
                 table: "Events",
                 column: "Name",
-                unique: true,
-                filter: "[Name] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_UserId",
@@ -274,8 +273,7 @@ namespace EventRate.Events.Infrastructure.Migrations
                 schema: "users",
                 table: "Users",
                 column: "Email",
-                unique: true,
-                filter: "[Email] IS NOT NULL");
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -3,87 +3,86 @@ using System;
 using EventRate.Events.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace EventRate.Events.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221016140706_V_First")]
-    partial class V_First
+    [Migration("20221024143955_V_First_Postgres")]
+    partial class V_First_Postgres
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.8")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("EventRate.Events.Domain.Entities.Events.Event", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(0);
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTimeOffset?>("AnswerEndDate")
-                        .HasColumnType("datetimeoffset");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int?>("CreatedBy")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(96);
 
                     b.Property<DateTimeOffset?>("CreatedDate")
-                        .HasColumnType("datetimeoffset")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnOrder(95);
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("EventDate")
-                        .HasColumnType("datetimeoffset");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsDelete")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnOrder(99);
 
                     b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("character varying(128)");
 
                     b.Property<Guid>("QrCode")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("SummaryText")
                         .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
+                        .HasColumnType("character varying(512)");
 
                     b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(98);
 
                     b.Property<DateTimeOffset?>("UpdatedDate")
-                        .HasColumnType("datetimeoffset")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnOrder(97);
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
-                        .IsUnique()
-                        .HasFilter("[Name] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -94,46 +93,46 @@ namespace EventRate.Events.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(0);
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Comment")
                         .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
+                        .HasColumnType("character varying(512)");
 
                     b.Property<int?>("CreatedBy")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(96);
 
                     b.Property<DateTimeOffset?>("CreatedDate")
-                        .HasColumnType("datetimeoffset")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnOrder(95);
 
                     b.Property<int>("EventId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("IsDelete")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnOrder(99);
 
                     b.Property<int>("QuestionId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("Rate")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(98);
 
                     b.Property<DateTimeOffset?>("UpdatedDate")
-                        .HasColumnType("datetimeoffset")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnOrder(97);
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -151,45 +150,45 @@ namespace EventRate.Events.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(0);
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CreatedBy")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(96);
 
                     b.Property<DateTimeOffset?>("CreatedDate")
-                        .HasColumnType("datetimeoffset")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnOrder(95);
 
                     b.Property<int>("EventId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Extension")
                         .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("character varying(10)");
 
                     b.Property<bool>("IsDelete")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnOrder(99);
 
                     b.Property<string>("Path")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Size")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("Sort")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(98);
 
                     b.Property<DateTimeOffset?>("UpdatedDate")
-                        .HasColumnType("datetimeoffset")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnOrder(97);
 
                     b.HasKey("Id");
@@ -203,40 +202,40 @@ namespace EventRate.Events.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(0);
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CreatedBy")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(96);
 
                     b.Property<DateTimeOffset?>("CreatedDate")
-                        .HasColumnType("datetimeoffset")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnOrder(95);
 
                     b.Property<int>("EventId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("IsDelete")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnOrder(99);
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(98);
 
                     b.Property<DateTimeOffset?>("UpdatedDate")
-                        .HasColumnType("datetimeoffset")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnOrder(97);
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -252,49 +251,48 @@ namespace EventRate.Events.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(0);
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CreatedBy")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(96);
 
                     b.Property<DateTimeOffset?>("CreatedDate")
-                        .HasColumnType("datetimeoffset")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnOrder(95);
 
                     b.Property<int>("EventId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("IsDelete")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnOrder(99);
 
                     b.Property<string>("Question")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("QuestionType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("Sort")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(98);
 
                     b.Property<DateTimeOffset?>("UpdatedDate")
-                        .HasColumnType("datetimeoffset")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnOrder(97);
 
                     b.HasKey("Id");
 
                     b.HasIndex("EventId", "Question")
-                        .IsUnique()
-                        .HasFilter("[Question] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("EventQuestions", "events");
                 });
@@ -303,55 +301,54 @@ namespace EventRate.Events.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(0);
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CreatedBy")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(96);
 
                     b.Property<DateTimeOffset?>("CreatedDate")
-                        .HasColumnType("datetimeoffset")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnOrder(95);
 
                     b.Property<string>("Email")
                         .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("FirstName")
                         .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                        .HasColumnType("character varying(64)");
 
                     b.Property<bool>("IsDelete")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnOrder(99);
 
                     b.Property<string>("LastName")
                         .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                        .HasColumnType("character varying(64)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
+                        .HasColumnType("character varying(16)");
 
                     b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnOrder(98);
 
                     b.Property<DateTimeOffset?>("UpdatedDate")
-                        .HasColumnType("datetimeoffset")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnOrder(97);
 
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
-                        .IsUnique()
-                        .HasFilter("[Email] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Users", "users");
                 });
