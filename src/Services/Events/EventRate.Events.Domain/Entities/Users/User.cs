@@ -21,5 +21,7 @@ namespace EventRate.Events.Domain.Entities.Users
         public string Phone { get; set; }
 
         public string Password { get; set; }
+
+        public string RefreshToken { get; set; }
     }
 }
